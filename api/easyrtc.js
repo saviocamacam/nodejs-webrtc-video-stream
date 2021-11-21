@@ -4237,7 +4237,9 @@ var Easyrtc = function() {
     this.createObjectURL = function(mediaStream) {
         var errMessage;
         if (window.URL && window.URL.createObjectURL) {
-            return window.URL.createObjectURL(mediaStream);
+            var binaryData = [];
+            binaryData.push(mediaStream);
+            return window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
         }
         else if (window.webkitURL && window.webkitURL.createObjectURL) {
             return window.webkit.createObjectURL(mediaStream);
